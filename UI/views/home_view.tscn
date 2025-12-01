@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://cpiyaiu4w48dg"]
+
+[ext_resource type="Texture2D" uid="uid://7op2a0xig57l" path="res://sprites/spr_icon_sheet.png" id="1_07rkw"]
+[ext_resource type="Script" uid="uid://7mm04yf6q0dw" path="res://UI/views/home_view.gd" id="1_ld3ij"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ld3ij"]
+load_path = "res://.godot/imported/spr_icon_sheet.png-f110de74fac88cf954833afeab6f45bc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcr11"]
+atlas = SubResource("CompressedTexture2D_ld3ij")
+region = Rect2(0, 0, 60, 54)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s38nq"]
+load_path = "res://.godot/imported/spr_icon_sheet.png-f110de74fac88cf954833afeab6f45bc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6s6g"]
+atlas = SubResource("CompressedTexture2D_s38nq")
+region = Rect2(60, 0, 60, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s38nq"]
+atlas = ExtResource("1_07rkw")
+region = Rect2(120, 0, 60, 54)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h6s6g"]
+load_path = "res://.godot/imported/spr_icon_sheet.png-f110de74fac88cf954833afeab6f45bc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uji54"]
+atlas = SubResource("CompressedTexture2D_h6s6g")
+region = Rect2(0, 54, 60, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76o84"]
+atlas = ExtResource("1_07rkw")
+region = Rect2(60, 54, 60, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfixy"]
+atlas = ExtResource("1_07rkw")
+region = Rect2(120, 54, 60, 54)
+
+[node name="HomeView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ld3ij")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="files" type="TextureRect" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_fcr11")
+
+[node name="camera" type="TextureRect" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_h6s6g")
+
+[node name="gallery" type="TextureRect" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_s38nq")
+
+[node name="save" type="TextureRect" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_uji54")
+
+[node name="settings" type="TextureRect" parent="GridContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_76o84")
+
+[node name="gps" type="TextureRect" parent="GridContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_xfixy")

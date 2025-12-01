@@ -1,0 +1,182 @@
+[gd_scene load_steps=19 format=3 uid="uid://cfildbkiigodp"]
+
+[ext_resource type="Script" uid="uid://ksxcrgiceexy" path="res://camera_bounds.gd" id="1_ijgdv"]
+[ext_resource type="Script" uid="uid://tx7267k14eer" path="res://node_3d.gd" id="2_ow83g"]
+[ext_resource type="PackedScene" uid="uid://cx8r0s0ubpy5l" path="res://player/player_3d.tscn" id="3_kshcw"]
+[ext_resource type="Script" uid="uid://bcn7cesoswbdd" path="res://scripts/camera.gd" id="4_tiqs3"]
+[ext_resource type="PackedScene" uid="uid://147jk8btve6d" path="res://levels/gasStation1.glb" id="5_bmjtd"]
+[ext_resource type="Script" uid="uid://csyx4gbhx7tdq" path="res://scripts/animation_player.gd" id="6_ub64p"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_g14j6"]
+points = PackedVector3Array(-4.29179, 0.882393, 4.05846, -5.03186, -0.0284643, 0.415036, -4.29179, -0.0284643, 0.415036, -5.03186, -0.0284643, 4.05846, -4.99661, 0.839, 0.588607, -4.29179, 0.882393, 0.415036, -4.29179, -0.0284643, 4.05846, -4.99661, 0.839, 3.88489)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vbegm"]
+points = PackedVector3Array(-0.849844, 0.9478, 1.73713, -1.00867, -0.0215573, 0.424845, -3.26035, -0.0215573, 1.29095, -1.01397, 0.00526586, 1.942, -3.26035, 0.974464, 1.29095, -0.562749, 0.9478, 0.466585, -3.18571, 0.947641, 1.942, -3.18571, 0.00526586, 1.942, -0.488545, -0.0215573, 1.33414, -1.00867, 0.974464, 0.424845, -0.488545, -0.0215573, 0.424845, -1.01397, 0.947641, 1.942, -0.562749, 0.9478, 1.3272, -0.603836, 0.9478, 1.40924)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ehkex"]
+points = PackedVector3Array(-1.27178, 0.949752, 1.3782, -1.3626, 1.4233, 1.78484, -1.3626, 1.4233, 1.72619, -1.60923, 0.949752, 1.3782, -1.08709, 0.953971, 1.827, -1.60454, 0.953926, 1.827, -1.07753, 1.15504, 1.37401, -1.61411, 1.15509, 1.37401, -1.14553, 1.30859, 1.82501, -1.52414, 1.41529, 1.7788, -1.61411, 1.15509, 1.83522, -1.0824, 0.949798, 1.3782, -1.07753, 1.15504, 1.83522, -1.14693, 1.29178, 1.53705, -1.53032, 1.4233, 1.72619, -1.54615, 1.30859, 1.82501, -1.54475, 1.29178, 1.53705, -1.14958, 1.31396, 1.6085, -1.14554, 1.31663, 1.81697)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xersf"]
+points = PackedVector3Array(4.38482, 1.44915, 4.60361, 3.7642, 0.03059, 1.76705, 3.74041, 0.357042, 1.65831, 4.40661, 1.02302, 1.65831, 4.3114, -0.0237929, 4.70319, 3.83562, 1.30846, 4.70319, 3.83562, 1.30846, 1.65831, 3.7642, 0.03059, 4.59445, 4.3114, -0.0237929, 1.65831, 4.3114, 1.49895, 1.65831, 4.40661, 1.02302, 4.70319, 3.74041, 0.357042, 4.70319, 4.3114, 1.49895, 4.70319, 4.38482, 1.44915, 1.75789)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ykrsh"]
+points = PackedVector3Array(-0.718785, 0.521, -1.6357, -0.807514, 0.431729, -2.05588, -0.836903, 0.431729, -2.04857, -0.719486, 0.431729, -1.58612, -0.528621, 0.431729, -1.86501, -0.646247, 0.517398, -2.00036, -0.987352, 0.503946, -1.77905, -0.947007, 0.431729, -1.66684, -0.907739, 0.517233, -1.97897, -0.554489, 0.503846, -1.73042, -0.983708, 0.431729, -1.91643, -0.880736, 0.517393, -1.64167, -0.609336, 0.431729, -2.00451, -0.563458, 0.517394, -1.89684, -0.579993, 0.431729, -1.66684, -0.721552, 0.503946, -2.04485, -0.672919, 0.503846, -1.61199, -0.948804, 0.521, -1.86571, -0.805448, 0.503946, -1.59715, -0.858933, 0.431729, -1.60079, -0.591006, 0.521, -1.73794, -0.998379, 0.431729, -1.77699, -0.987352, 0.503946, -1.86295, -0.718785, 0.521, -2.0063, -0.854079, 0.503846, -2.03001, -0.917664, 0.431729, -2.00451, -0.554491, 0.503846, -1.91158, -0.668067, 0.431729, -2.04121, -0.94286, 0.517398, -1.70375, -0.535933, 0.431729, -1.7476, -0.539648, 0.503946, -1.77905, -0.937338, 0.503799, -1.96704)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_00tp4"]
+points = PackedVector3Array(4.17829, 1.48044, 4.67955, 3.75621, 0.0262452, 1.72436, 3.75621, 0.213998, 1.72436, 4.31899, 1.33966, 1.67735, 4.22521, 0.0262452, 4.67955, 3.8969, 1.48044, 4.67955, 3.75621, 0.0262452, 4.67955, 4.22521, 0.0262452, 1.72436, 3.8969, 1.48044, 1.77138, 4.36591, 1.29269, 4.25696, 3.80306, 0.823519, 4.67955, 4.31899, 1.43347, 1.67735, 4.36591, 1.29269, 2.47521, 4.31331, 1.41849, 4.6465, 4.27213, 0.354635, 4.67955, 3.80306, 0.823519, 1.77138, 3.75621, 0.354635, 3.50641, 3.8969, 1.29269, 1.67735, 3.84998, 1.24586, 4.351, 4.27213, 0.354635, 2.75645, 4.36591, 1.38635, 4.25696, 4.17829, 1.48044, 3.2719, 4.31899, 1.05825, 1.77138, 4.31899, 1.05825, 4.67955, 3.75621, 0.354635, 1.81811, 3.75621, 0.213998, 4.67955, 4.27213, 1.24586, 1.67735, 4.27213, 0.495414, 1.77138, 3.99074, 1.24586, 1.67735)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vbegm"]
+
+[sub_resource type="Environment" id="Environment_ykrsh"]
+background_mode = 1
+background_color = Color(0.032244, 0.0494637, 0.0407506, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.335529, 0.384428, 0.279801, 1)
+ambient_light_energy = 0.5
+tonemap_mode = 3
+tonemap_exposure = 0.5
+ssao_enabled = true
+glow_enabled = true
+
+[sub_resource type="Animation" id="Animation_g14j6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.0]
+}
+
+[sub_resource type="Animation" id="Animation_ykrsh"]
+resource_name = "light_flicker"
+step = 12.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.45, 0.5, 0.55, 0.6, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [3.0, 3.0, 0.0, 3.0, 0.0, 0.5, 2.75, 3.0, 2.75, 3.0, 2.75, 3.0, 2.75, 3.0, 2.75, 3.0]
+}
+
+[sub_resource type="Animation" id="Animation_vbegm"]
+resource_name = "light_flux"
+loop_mode = 1
+step = 12.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [3.0, 2.75, 3.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vbegm"]
+_data = {
+&"RESET": SubResource("Animation_g14j6"),
+&"light_flicker": SubResource("Animation_ykrsh"),
+&"light_flux": SubResource("Animation_vbegm")
+}
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+texture_filter = 1
+offset_right = 762.0
+offset_bottom = 512.0
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+render_target_update_mode = 4
+
+[node name="Node3D" type="Node3D" parent="SubViewport"]
+
+[node name="cameraPivot" type="Node3D" parent="SubViewport/Node3D"]
+script = ExtResource("1_ijgdv")
+
+[node name="Node3D" type="Node3D" parent="SubViewport/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0, 1.5)
+script = ExtResource("2_ow83g")
+
+[node name="Player3D" parent="SubViewport/Node3D/Node3D" instance=ExtResource("3_kshcw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.16772, 0.359493, -0.115817)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport/Node3D/Node3D" node_paths=PackedStringArray("player")]
+transform = Transform3D(-1, 6.18173e-08, -6.18173e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, -3.25, 3, -1.9)
+projection = 1
+size = 6.0
+near = 0.1
+script = ExtResource("4_tiqs3")
+player = NodePath("../Player3D")
+
+[node name="gasStation1" parent="SubViewport/Node3D" instance=ExtResource("5_bmjtd")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.5, 0.25, 3.75)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Node3D/gasStation1/counter" index="0"]
+shape = SubResource("ConvexPolygonShape3D_g14j6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Node3D/gasStation1/desk" index="0"]
+shape = SubResource("ConvexPolygonShape3D_vbegm")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewport/Node3D/gasStation1/register2" index="0"]
+shape = SubResource("ConvexPolygonShape3D_ehkex")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="SubViewport/Node3D/gasStation1/leftShelf" index="0"]
+shape = SubResource("ConvexPolygonShape3D_xersf")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="SubViewport/Node3D/gasStation1"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -0.0089471, 0.154542, 0)
+shape = SubResource("ConvexPolygonShape3D_ykrsh")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="SubViewport/Node3D/gasStation1"]
+shape = SubResource("ConvexPolygonShape3D_00tp4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport/Node3D/gasStation1"]
+transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, 0, -0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Node3D/gasStation1/StaticBody3D"]
+transform = Transform3D(12, 0, 0, 0, 0.25, 0, 0, 0, 12, 0, 0.127263, 0)
+shape = SubResource("BoxShape3D_vbegm")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport/Node3D"]
+environment = SubResource("Environment_ykrsh")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 3, 0.75)
+light_color = Color(0.777243, 0.809113, 0.628745, 1)
+light_energy = 3.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewport/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 3, 0.75)
+light_color = Color(0.777243, 0.809113, 0.628745, 1)
+light_energy = 3.0
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="SubViewport/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.75, 3, 5)
+light_color = Color(0.777243, 0.809113, 0.628745, 1)
+light_energy = 3.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport/Node3D/OmniLight3D3"]
+libraries = {
+&"": SubResource("AnimationLibrary_vbegm")
+}
+autoplay = "light_flicker"
+script = ExtResource("6_ub64p")
+
+[connection signal="animation_finished" from="SubViewport/Node3D/OmniLight3D3/AnimationPlayer" to="SubViewport/Node3D/OmniLight3D3/AnimationPlayer" method="_on_animation_finished"]
+
+[editable path="SubViewport/Node3D/gasStation1"]

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dth4b2bi6yjeo"]
+
+[ext_resource type="PackedScene" uid="uid://rc54d541fecq" path="res://player/rootbeer.glb" id="1_t3e2v"]
+
+[node name="rootbeer" instance=ExtResource("1_t3e2v")]

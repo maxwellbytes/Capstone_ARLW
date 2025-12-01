@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cx8r0s0ubpy5l"]
+
+[ext_resource type="Script" uid="uid://k4q1onv15cjr" path="res://player/Player.gd" id="1_a5lo2"]
+[ext_resource type="Script" uid="uid://bcn7cesoswbdd" path="res://camera.gd" id="3_6g8ua"]
+[ext_resource type="PackedScene" uid="uid://druamm7kxiwcg" path="res://temp_character_editedbackup_2.tscn" id="7_jeexd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a5lo2"]
+radius = 0.2
+height = 1.5
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_a5lo2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CapsuleShape3D_a5lo2")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="tempCharacterEditedbackup2" parent="Pivot" instance=ExtResource("7_jeexd")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+script = ExtResource("3_6g8ua")

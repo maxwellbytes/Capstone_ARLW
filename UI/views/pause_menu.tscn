@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://felp4sdgsm4q"]
+
+[ext_resource type="Texture2D" uid="uid://bwi161klm835" path="res://sprites/spr_phoneBG.png" id="1_daoso"]
+[ext_resource type="Script" uid="uid://d3qg5kv3r3jvt" path="res://UI/views/pause_menu.gd" id="1_h0j48"]
+[ext_resource type="PackedScene" uid="uid://cpiyaiu4w48dg" path="res://UI/views/home_view.tscn" id="2_5fag0"]
+[ext_resource type="PackedScene" uid="uid://ls76sdpddpsa" path="res://UI/views/fileView.tscn" id="3_61bml"]
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h0j48")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.14500001
+anchor_right = 0.85200006
+anchor_bottom = 1.0
+offset_left = 0.5999756
+offset_right = -1130.8401
+offset_bottom = -900.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6, 6)
+texture = ExtResource("1_daoso")
+stretch_mode = 5
+
+[node name="ScreenArea" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -549.0
+offset_top = -240.0
+offset_right = -369.0
+offset_bottom = -130.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6, 6)
+
+[node name="HomeView" parent="ScreenArea" instance=ExtResource("2_5fag0")]
+layout_mode = 1
+
+[node name="fileView" parent="ScreenArea" instance=ExtResource("3_61bml")]
+visible = false
+layout_mode = 1
+
+[editable path="ScreenArea/HomeView"]
+[editable path="ScreenArea/fileView"]

@@ -1,0 +1,124 @@
+[gd_scene load_steps=16 format=3 uid="uid://ls76sdpddpsa"]
+
+[ext_resource type="Script" uid="uid://chf2dxjuo6j56" path="res://UI/views/file_view.gd" id="1_d4u7l"]
+[ext_resource type="Texture2D" uid="uid://dool8y80citxg" path="res://sprites/spr_view_inventory.png" id="1_ni6b0"]
+[ext_resource type="Texture2D" uid="uid://cc5anaaqd4c4v" path="res://sprites/spr_invButtons.png" id="2_3tkpi"]
+[ext_resource type="Texture2D" uid="uid://u57vasp3cj3h" path="res://sprites/spr_inventory_sheet.png" id="3_fj3qt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2cq1"]
+atlas = ExtResource("3_fj3qt")
+region = Rect2(0, 0, 188, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4u7l"]
+atlas = ExtResource("2_3tkpi")
+region = Rect2(0, 155, 69, 13)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fj3qt"]
+load_path = "res://.godot/imported/spr_invButtons.png-08859ce78117f52f574536ceb654b1fb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8wy3"]
+atlas = SubResource("CompressedTexture2D_fj3qt")
+region = Rect2(0, 156, 69, 13)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m2cq1"]
+load_path = "res://.godot/imported/spr_invButtons.png-08859ce78117f52f574536ceb654b1fb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnm4o"]
+atlas = SubResource("CompressedTexture2D_m2cq1")
+region = Rect2(0, 156, 69, 13)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4s0vp"]
+load_path = "res://.godot/imported/spr_invButtons.png-08859ce78117f52f574536ceb654b1fb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pvhe"]
+atlas = SubResource("CompressedTexture2D_4s0vp")
+region = Rect2(0, 156, 69, 13)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pe65s"]
+load_path = "res://.godot/imported/spr_invButtons.png-08859ce78117f52f574536ceb654b1fb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8dpc"]
+atlas = SubResource("CompressedTexture2D_pe65s")
+region = Rect2(69, 154, 69, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wav46"]
+atlas = ExtResource("2_3tkpi")
+region = Rect2(69, 130, 69, 13)
+
+[node name="fileView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d4u7l")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ni6b0")
+stretch_mode = 4
+
+[node name="inv_sheet" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_m2cq1")
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
+z_index = 4
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.065625
+anchor_top = 0.2537037
+anchor_right = 0.40572917
+anchor_bottom = 0.93703705
+theme_override_constants/separation = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="slot1" type="TextureRect" parent="VBoxContainer"]
+z_index = 4
+layout_mode = 2
+texture = SubResource("AtlasTexture_d4u7l")
+expand_mode = 5
+
+[node name="slot2" type="TextureRect" parent="VBoxContainer"]
+z_index = 4
+layout_mode = 2
+texture = SubResource("AtlasTexture_i8wy3")
+expand_mode = 5
+
+[node name="slot3" type="TextureRect" parent="VBoxContainer"]
+z_index = 4
+layout_mode = 2
+texture = SubResource("AtlasTexture_tnm4o")
+expand_mode = 5
+
+[node name="slot4" type="TextureRect" parent="VBoxContainer"]
+z_index = 4
+layout_mode = 2
+texture = SubResource("AtlasTexture_6pvhe")
+expand_mode = 5
+
+[node name="slot5" type="TextureRect" parent="VBoxContainer"]
+z_index = 4
+layout_mode = 2
+texture = SubResource("AtlasTexture_r8dpc")
+expand_mode = 5
+
+[node name="slotBack" type="TextureRect" parent="VBoxContainer"]
+z_index = 4
+layout_mode = 2
+texture = SubResource("AtlasTexture_wav46")
+expand_mode = 5

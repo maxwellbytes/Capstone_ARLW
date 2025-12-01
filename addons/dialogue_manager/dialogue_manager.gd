@@ -429,6 +429,17 @@ func show_example_dialogue_balloon(resource: DialogueResource, title: String = "
 	_start_balloon.call_deferred(balloon, resource, title, extra_game_states)
 	return balloon
 
+func show_balloon(resource: DialogueResource, title: String = "", type: String = "", extra_game_states: Array = []) -> Node:
+	# setting it to default balloon as a fail safe
+	var balloon_path: String = DMSettings.get_setting(DMSettings.BALLOON_PATH, _get_example_balloon_path())
+	match type:
+		"character":
+			balloon_path = "res://textboxes/named_textbox.tscn"
+		"portrait":
+			balloon_path = "res://textboxes/portrait_textbox.tscn"
+		"env":
+			balloon_path = "res://textboxes/env_textbox.tscn"
+	return show_dialogue_balloon_scene(balloon_path, resource, title, extra_game_states)
 
 ## Show the configured dialogue balloon
 func show_dialogue_balloon(resource: DialogueResource, title: String = "", extra_game_states: Array = []) -> Node:

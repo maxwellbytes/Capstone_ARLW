@@ -11,14 +11,12 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dnbty"]
 resource_name = "Base"
 cull_mode = 2
-shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("2_f6dsq")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2shcx"]
 resource_name = "face_m"
 cull_mode = 2
-shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("3_ed5gu")
 
@@ -60,7 +58,6 @@ blend_shape_mode = 0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ynad1"]
 resource_name = "hashair001.001"
 cull_mode = 2
-shading_mode = 0
 albedo_texture = ExtResource("4_h5ppq")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ugp4f"]
@@ -86,7 +83,6 @@ blend_shape_mode = 0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e6pko"]
 resource_name = "jacket_m"
 cull_mode = 2
-shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("5_37wlo")
 
@@ -113,7 +109,6 @@ blend_shape_mode = 0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1kvkr"]
 resource_name = "pants_m"
 cull_mode = 2
-shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("6_1ijk0")
 
@@ -140,7 +135,6 @@ blend_shape_mode = 0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kcp7g"]
 resource_name = "boots_m"
 cull_mode = 2
-shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("7_cmii3")
 
@@ -386,6 +380,7 @@ bones/408/position = Vector3(-0.251857, 0.529808, 0.855619)
 bones/408/rotation = Quaternion(-0.710815, -5.02437e-15, -1.50731e-14, 0.703379)
 
 [node name="Base_001" parent="rig/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000245392, 0.00350904, -0.00227833)
 mesh = SubResource("ArrayMesh_lhw6q")
 
 [node name="hair_001" parent="rig/Skeleton3D" index="1"]

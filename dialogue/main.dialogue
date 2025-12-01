@@ -1,3 +1,28 @@
 ~ start
-God: You picked up an object!
+if ItemDatabase.item_list["key"].in_inv == true:
+	Zachary: The sign says "employees only" but the key works!
+	do Global.opening_door.emit()
+else:
+	Zachary: The sign says "employees only"...and it's locked
+=> END
+
+~ pick_up_key
+Zachary: There's a key here!
+set ItemDatabase.item_list["key"].in_inv = true
+=> END
+
+~ root_beer
+Zachary: There is a case of root beer here.
+Zachary: Take one?
+- Yes
+	do Global.drink_rootbeer.emit()
+	set ItemDatabase.item_list["rb"].in_inv = true
+- No
+=> END
+
+~ go_inside
+: Go inside?
+- Yes
+	do Global.go_inside.emit()
+- No
 => END

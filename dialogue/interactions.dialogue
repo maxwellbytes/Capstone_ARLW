@@ -1,0 +1,53 @@
+~ icebox
+Zachary: I don't think we need any ice right now
+=> END
+
+~ chooseSnack
+if Global.hasFood == false
+	: Grab some food?
+	- Chips
+		: You grab some chips
+		#set Global.snackChoice = "chips"
+		#set Global.hasFood == true
+		Inventory.add_item(ItemDatabase.item_list["chips"])
+	- Candy
+		: You grab some candy
+		#set Global.snackChoice = "candy"
+		#set Global.hasFood == true
+		Inventory.add_item(ItemDatabase.item_list["candy"])
+	- Beef Jerky
+		: You grab some beef jerky
+		#set Global.hasFood == true
+		#set Global.snackChoice = "beef_jerky"
+		Inventory.add_item(ItemDatabase.item_list["bfj"])
+	- Crackers
+		: You grab some crackers
+		#set Global.snackChoice = "crackers"
+		Inventory.add_item(ItemDatabase.item_list["crackers"])
+	- Nevermind
+		=> END
+else
+	Zach: I already have food
+	=> END
+set Global.hasFood == true
+=> END
+
+~ chooseDrink
+if Global.drinkChoice == "none"
+	: Grab a drink?
+	- Soda
+		: You grab a soda
+		set Global.drinkChoice = "soda"
+	- Water
+		: You grab a water
+		set Global.drinkChoice = "water"
+	- Juice
+		: You grab Juice
+		set Global.drinkChoice = "juice"
+	- Energy drink
+		: You grab an energy drink
+		set Global.drinkChoice = "energy_drink"
+	- Nevermind
+else
+	Zach: I already have a drink
+=> END
