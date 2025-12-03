@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://felp4sdgsm4q"]
+[gd_scene load_steps=6 format=3 uid="uid://felp4sdgsm4q"]
 
 [ext_resource type="Texture2D" uid="uid://bwi161klm835" path="res://sprites/spr_phoneBG.png" id="1_daoso"]
 [ext_resource type="Script" uid="uid://d3qg5kv3r3jvt" path="res://UI/views/pause_menu.gd" id="1_h0j48"]
 [ext_resource type="PackedScene" uid="uid://cpiyaiu4w48dg" path="res://UI/views/home_view.tscn" id="2_5fag0"]
 [ext_resource type="PackedScene" uid="uid://ls76sdpddpsa" path="res://UI/views/fileView.tscn" id="3_61bml"]
+[ext_resource type="PackedScene" uid="uid://bvq6ndnun2tp6" path="res://UI/views/save_view.tscn" id="5_4oeqx"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -49,6 +50,9 @@ layout_mode = 1
 
 [node name="fileView" parent="ScreenArea" instance=ExtResource("3_61bml")]
 visible = false
+layout_mode = 1
+
+[node name="SaveView" parent="ScreenArea" instance=ExtResource("5_4oeqx")]
 layout_mode = 1
 
 [editable path="ScreenArea/HomeView"]

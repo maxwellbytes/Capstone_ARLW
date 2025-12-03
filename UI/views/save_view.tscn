@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvq6ndnun2tp6"]
+
+[ext_resource type="Script" uid="uid://c5iiw84v4ylmc" path="res://UI/views/save_view.gd" id="1_1kvfr"]
+[ext_resource type="Texture2D" uid="uid://cl8nc54e4qdo5" path="res://sprites/spr_save_screen_sheet.png" id="1_efrto"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kvfr"]
+atlas = ExtResource("1_efrto")
+region = Rect2(0, 0, 190, 111)
+
+[node name="SaveView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1kvfr")
+
+[node name="menu" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_1kvfr")

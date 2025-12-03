@@ -1,13 +1,14 @@
 extends CharacterBody3D
 
 #player speed m/s
-@export var speed = 3
+@export var speed = 2.5
 #downward acceleration when in the air ms^2
 @export var fall_acceleration = 75
 #@export_range(0.0,1.0) var mouse_sensitivity = 0.01
 #@export var tilt_limit = deg_to_rad(75)
 
 @onready var actionableFinder: Area3D = $Pivot/Direction/ActionableFinder
+@onready var player = $"."
 
 #@onready var _camera := $cameraPivot/SpringArm3D/Camera3D as Camera3D
 #@onready var _camera_pivot := $cameraPivot as Node3D
@@ -49,6 +50,18 @@ func _ready():
 		var dialogue_manager = Engine.get_singleton("DialogueManager")
 		if dialogue_manager.has_signal("dialogue_ended"):
 			dialogue_manager.dialogue_ended.connect(end_interact)
+	#SaveSystem.get_player.connect(send_save_data)
+	SaveSystem.player = self
+
+func send_data() -> StringName:
+	return get_tree().current_scene.name
+
+#func send_save_data() -> Dictionary:
+	#return {
+		#"position_x": player.position.x,
+		#"position_y": player.position.y,
+		#"position_z": player.position.z
+	#}
 
 func end_interact(resource: DialogueResource):
 	if curr_state == States.INTERACT:

@@ -9,44 +9,59 @@ if Global.hasFood == false
 		: You grab some chips
 		#set Global.snackChoice = "chips"
 		#set Global.hasFood == true
-		Inventory.add_item(ItemDatabase.item_list["chips"])
-	- Candy
-		: You grab some candy
-		#set Global.snackChoice = "candy"
-		#set Global.hasFood == true
-		Inventory.add_item(ItemDatabase.item_list["candy"])
-	- Beef Jerky
-		: You grab some beef jerky
-		#set Global.hasFood == true
-		#set Global.snackChoice = "beef_jerky"
-		Inventory.add_item(ItemDatabase.item_list["bfj"])
+		#Inventory.add_item(ItemDatabase.item_list["chips"])
+		set ItemDatabase.item_list["chips"].in_inv = true
+		set Global.hasFood = true
+#	- Candy
+#		: You grab some candy
+#		#set Global.snackChoice = "candy"
+#		#set Global.hasFood == true
+#		#Inventory.add_item(ItemDatabase.item_list["candy"])
+#		set ItemDatabase.item_list["candy"].in_inv = true
+#		set Global.hasFood == true
+#	- Beef Jerky
+#		: You grab some beef jerky
+#		#set Global.hasFood == true
+#		#set Global.snackChoice = "beef_jerky"
+#		#Inventory.add_item(ItemDatabase.item_list["bfj"])
+#		set ItemDatabase.item_list["bfj"].in_inv = true
+#		set Global.hasFood == true
 	- Crackers
 		: You grab some crackers
 		#set Global.snackChoice = "crackers"
-		Inventory.add_item(ItemDatabase.item_list["crackers"])
+		#Inventory.add_item(ItemDatabase.item_list["crackers"])
+		set ItemDatabase.item_list["crackers"].in_inv = true
+		set Global.hasFood = true
 	- Nevermind
 		=> END
 else
 	Zach: I already have food
 	=> END
-set Global.hasFood == true
 => END
 
 ~ chooseDrink
-if Global.drinkChoice == "none"
+if Global.hasDrink == false
 	: Grab a drink?
 	- Soda
 		: You grab a soda
-		set Global.drinkChoice = "soda"
+		#set Global.drinkChoice = "soda"
+		set ItemDatabase.item_list["soda"].in_inv = true
+		set Global.hasDrink = true
 	- Water
 		: You grab a water
-		set Global.drinkChoice = "water"
+		#set Global.drinkChoice = "water"
+		set ItemDatabase.item_list["water"].in_inv = true
+		set Global.hasDrink = true
 	- Juice
 		: You grab Juice
-		set Global.drinkChoice = "juice"
+		#set Global.drinkChoice = "juice"
+		set ItemDatabase.item_list["juice"].in_inv = true
+		set Global.hasDrink = true
 	- Energy drink
 		: You grab an energy drink
-		set Global.drinkChoice = "energy_drink"
+		#set Global.drinkChoice = "energy_drink"
+		set ItemDatabase.item_list["energy_drink"].in_inv = true
+		set Global.hasDrink = true
 	- Nevermind
 else
 	Zach: I already have a drink

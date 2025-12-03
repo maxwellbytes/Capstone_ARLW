@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Capstone"
-run/main_scene="uid://bvgg1hp6myi7g"
+run/main_scene="uid://c0vl1aq1ve4t3"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -25,6 +25,7 @@ ItemDatabase="*res://scripts/item_database.gd"
 Inventory="*res://scripts/inventory.gd"
 GameManager="*res://scripts/GameManager.gd"
 PauseEventBus="*res://scripts/PauseEventBus.gd"
+SaveSystem="*res://UI/save_system.gd"
 
 [dialogue_manager]
 
@@ -47,6 +48,10 @@ version_control/autoload_on_startup=true
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
+
+[global_group]
+
+Persist=""
 
 [input]
 

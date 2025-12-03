@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://chf2dxjuo6j56" path="res://UI/views/file_view.gd" id="1_d4u7l"]
 [ext_resource type="Texture2D" uid="uid://dool8y80citxg" path="res://sprites/spr_view_inventory.png" id="1_ni6b0"]
 [ext_resource type="Texture2D" uid="uid://cc5anaaqd4c4v" path="res://sprites/spr_invButtons.png" id="2_3tkpi"]
-[ext_resource type="Texture2D" uid="uid://u57vasp3cj3h" path="res://sprites/spr_inventory_sheet.png" id="3_fj3qt"]
+[ext_resource type="Texture2D" uid="uid://c20bjksginkna" path="res://sprites/spr_inventory_sheet_updated.png" id="3_fj3qt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m2cq1"]
 atlas = ExtResource("3_fj3qt")
-region = Rect2(0, 0, 188, 111)
+region = Rect2(0, 0, 190, 111)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d4u7l"]
 atlas = ExtResource("2_3tkpi")

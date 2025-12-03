@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0vl1aq1ve4t3"]
+
+[ext_resource type="Script" uid="uid://cgu0ng63r4ek8" path="res://UI/main_menu.gd" id="1_tk8dj"]
+[ext_resource type="Texture2D" uid="uid://c3ud5kvwshm7w" path="res://sprites/spr_main_menu_sheet.png" id="2_d8nwk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cwpn"]
+atlas = ExtResource("2_d8nwk")
+region = Rect2(0, 0, 480, 270)
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tk8dj")
+
+[node name="menu" type="TextureRect" parent="." groups=["Persist"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_4cwpn")

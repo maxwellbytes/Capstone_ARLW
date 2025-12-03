@@ -9,6 +9,7 @@ extends Control
 #signal icon_selected(icon_name: String)
 @onready var home_view = $ScreenArea/HomeView
 @onready var file_view = $ScreenArea/fileView
+@onready var save_view = $ScreenArea/SaveView
 
 signal now_visible
 
@@ -30,7 +31,8 @@ func _ready() -> void:
 	GameManager.menu_toggled.connect(on_menu_toggle)
 	GameManager.view_changed.connect(on_view_change)
 	home_view.icon_selected.connect(change_view)
-	file_view.exit.connect(change_view)
+	file_view.file_exit.connect(change_view)
+	save_view.save_exit.connect(change_view)
 
 func change_view(icon_name: String):
 	GameManager.open_view(icon_name)
@@ -49,18 +51,33 @@ func on_view_change(view_name: String):
 	if view_name == "":
 		#hide()
 		home_view.show()
+	# if i have time i should move the show/hide to a helper method
 	match view_name:
 		"HOME":
 			file_view.hide()
 			file_view.process_mode = Node.PROCESS_MODE_DISABLED
+			save_view.hide()
+			save_view.process_mode = Node.PROCESS_MODE_DISABLED
+			
 			home_view.show()
 			home_view.process_mode = Node.PROCESS_MODE_ALWAYS
 		"FILES":
 			home_view.hide()
 			home_view.process_mode = Node.PROCESS_MODE_DISABLED
+			save_view.hide()
+			save_view.process_mode = Node.PROCESS_MODE_DISABLED
+			
 			file_view.show()
 			file_view.process_mode = Node.PROCESS_MODE_ALWAYS
 			now_visible.emit()
+		"SAVE":
+			home_view.hide()
+			file_view.hide()
+			home_view.process_mode = Node.PROCESS_MODE_DISABLED
+			file_view.process_mode = Node.PROCESS_MODE_DISABLED
+			save_view.show()
+			save_view.process_mode = Node.PROCESS_MODE_ALWAYS
+			
 
 	#if view_name == "":
 		#hide()

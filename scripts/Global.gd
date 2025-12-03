@@ -8,6 +8,9 @@ extends Node
 #@export var drinkChoice = "none"
 @export var hasFood = false
 @export var hasDrink = false
+var has_key = false
+
+signal got_key
 
 var doorTriggers = "res://doorTriggers.gd"
 signal opening_door

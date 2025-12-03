@@ -1,14 +1,22 @@
 ~ start
 if ItemDatabase.item_list["key"].in_inv == true:
-	Zachary: The sign says "employees only" but the key works!
-	do Global.opening_door.emit()
+	if Global.door_open == false:
+		Zachary: The sign says "employees only" but the key works!
+		do Global.opening_door.emit()
+		set Global.door_open = true
+	else:
+		Zachary: The key worked
 else:
 	Zachary: The sign says "employees only"...and it's locked
 => END
 
 ~ pick_up_key
-Zachary: There's a key here!
-set ItemDatabase.item_list["key"].in_inv = true
+if !ItemDatabase.item_list["key"].in_inv:
+	Zachary: There's a key here!
+	do Global.got_key.emit()
+	set ItemDatabase.item_list["key"].in_inv = true
+else:
+	Zachary: There isn't anything else here
 => END
 
 ~ root_beer

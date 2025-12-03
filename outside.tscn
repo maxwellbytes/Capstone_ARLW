@@ -1,7 +1,7 @@
 [gd_scene load_steps=30 format=4 uid="uid://bvgg1hp6myi7g"]
 
-[ext_resource type="Shader" uid="uid://qtd7dqajp0pc" path="res://pixelTest.gdshader" id="1_i7vbf"]
 [ext_resource type="Script" uid="uid://coyo6w1g7mube" path="res://scripts/cameraOutside.gd" id="1_skvht"]
+[ext_resource type="Script" uid="uid://mjwo5avoahuo" path="res://outside.gd" id="1_xf062"]
 [ext_resource type="PackedScene" uid="uid://cx8r0s0ubpy5l" path="res://player/player_3d.tscn" id="2_n6vtj"]
 [ext_resource type="PackedScene" uid="uid://33nbi5605lqp" path="res://models/lamp.glb" id="4_ku5i6"]
 [ext_resource type="Script" uid="uid://butb2kab0k2rv" path="res://scripts/triggers_outdoors.gd" id="7_0b51g"]
@@ -16,9 +16,38 @@
 [ext_resource type="Texture2D" uid="uid://oavyqudad7js" path="res://models/keyRing_txt_keyring.png" id="14_crsda"]
 [ext_resource type="PackedScene" uid="uid://felp4sdgsm4q" path="res://UI/views/pause_menu.tscn" id="15_xf062"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ku5i6"]
-shader = ExtResource("1_i7vbf")
-shader_parameter/pixel_size = 4
+[sub_resource type="AtlasTexture" id="AtlasTexture_xf062"]
+atlas = ExtResource("14_cobvr")
+region = Rect2(1024, 0, 1024, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crsda"]
+atlas = ExtResource("14_cobvr")
+region = Rect2(0, 512, 1024, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_alkrm"]
+atlas = ExtResource("14_cobvr")
+region = Rect2(1024, 512, 1024, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3fus5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xf062")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crsda")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_alkrm")
+}],
+"loop": false,
+"name": &"cutscene",
+"speed": 3.0
+}]
+
+[sub_resource type="QuadMesh" id="QuadMesh_cobvr"]
+flip_faces = true
+size = Vector2(2, 2)
 
 [sub_resource type="Environment" id="Environment_n6vtj"]
 background_color = Color(0.94, 0.89488, 0.7896, 0.28627452)
@@ -35,7 +64,7 @@ fog_density = 1.0
 fog_height = 1.0
 fog_height_density = 0.3454
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.075
+volumetric_fog_density = 0.045
 volumetric_fog_albedo = Color(0.8509804, 0.78039217, 0.6745098, 1)
 volumetric_fog_emission = Color(0.61745477, 0.61745477, 0.6174547, 1)
 volumetric_fog_anisotropy = 0.8
@@ -126,47 +155,36 @@ albedo_color = Color(0.34158427, 0.34158427, 0.3415842, 1)
 metallic = 0.73
 roughness = 0.45
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xf062"]
-atlas = ExtResource("14_cobvr")
-region = Rect2(1024, 0, 1024, 512)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_crsda"]
-atlas = ExtResource("14_cobvr")
-region = Rect2(0, 512, 1024, 512)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_alkrm"]
-atlas = ExtResource("14_cobvr")
-region = Rect2(1024, 512, 1024, 512)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_3fus5"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xf062")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_crsda")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_alkrm")
-}],
-"loop": false,
-"name": &"cutscene",
-"speed": 3.0
-}]
-
-[node name="ColorRect" type="ColorRect"]
-material = SubResource("ShaderMaterial_ku5i6")
+[node name="SubViewportContainer" type="SubViewportContainer" groups=["Persist"]]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+stretch = true
+stretch_shrink = 4
+script = ExtResource("1_xf062")
 
-[node name="playerCamera" type="Node3D" parent="."]
+[node name="PauseMenu" parent="." groups=["Persist"] instance=ExtResource("15_xf062")]
+visible = false
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(1.8867188, 2.1367188)
+sprite_frames = SubResource("SpriteFrames_3fus5")
+animation = &"cutscene"
+centered = false
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="playerCamera" type="Node3D" parent="SubViewport" groups=["Persist"]]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -0.32616106, 0.05990702, -6.3320446)
 
-[node name="Camera3D" type="Camera3D" parent="playerCamera" node_paths=PackedStringArray("player")]
+[node name="Camera3D" type="Camera3D" parent="SubViewport/playerCamera" node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, 0.9396925, 0.3420201, 0, -0.3420201, 0.9396925, 0.225, 4.707, 9.282)
 fov = 32.0
 size = 6.0
@@ -174,67 +192,72 @@ near = 0.1
 script = ExtResource("1_skvht")
 player = NodePath("../Player")
 
-[node name="Player" parent="playerCamera" instance=ExtResource("2_n6vtj")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/playerCamera/Camera3D"]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_cobvr")
+
+[node name="Player" parent="SubViewport/playerCamera" instance=ExtResource("2_n6vtj")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Pivot" type="Node3D" parent="."]
+[node name="Pivot" type="Node3D" parent="SubViewport"]
 transform = Transform3D(0.93730634, 0, -0.3485066, 0, 1, 0, 0.3485066, 0, 0.93730634, 0, 0, 0)
 
-[node name="sceneTransformCont" type="Node3D" parent="Pivot"]
+[node name="sceneTransformCont" type="Node3D" parent="SubViewport/Pivot"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Node3D" type="Node3D" parent="Pivot/sceneTransformCont"]
+[node name="Node3D" type="Node3D" parent="SubViewport/Pivot/sceneTransformCont"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Pivot/sceneTransformCont/Node3D"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport/Pivot/sceneTransformCont/Node3D"]
 environment = SubResource("Environment_n6vtj")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Pivot/sceneTransformCont/Node3D/WorldEnvironment"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D/WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.181126, -10.148217)
 
-[node name="Lights" type="Node3D" parent="Pivot/sceneTransformCont/Node3D"]
+[node name="Lights" type="Node3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D"]
+visible = false
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Pivot/sceneTransformCont/Node3D/Lights"]
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7622372, 1.6313827, -11.462181)
 light_color = Color(0.9019608, 0.88235295, 0.7411765, 1)
 
-[node name="OmniLight3D10" type="OmniLight3D" parent="Pivot/sceneTransformCont/Node3D/Lights"]
+[node name="OmniLight3D10" type="OmniLight3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.130157, 1.6313827, -11.462181)
 light_color = Color(0.9019608, 0.88235295, 0.7411765, 1)
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="Pivot/sceneTransformCont/Node3D/Lights"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2955824, 1.6313827, -11.462181)
 light_color = Color(0.9019608, 0.88235295, 0.7411765, 1)
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="Pivot/sceneTransformCont/Node3D/Lights"]
+[node name="OmniLight3D3" type="OmniLight3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07705569, 1.6313827, -11.462181)
 light_color = Color(0.9019608, 0.88235295, 0.7411765, 1)
 
-[node name="OmniLight3D4" type="OmniLight3D" parent="Pivot/sceneTransformCont/Node3D/Lights"]
+[node name="OmniLight3D4" type="OmniLight3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.676649, 1.6313827, -11.462181)
 light_color = Color(0.9019608, 0.88235295, 0.7411765, 1)
 
-[node name="OmniLight3D5" type="OmniLight3D" parent="Pivot/sceneTransformCont/Node3D/Lights"]
+[node name="OmniLight3D5" type="OmniLight3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.100089, 1.6313827, -11.462181)
 light_color = Color(0.9019608, 0.88235295, 0.7411765, 1)
 
-[node name="OmniLight3D6" type="OmniLight3D" parent="Pivot/sceneTransformCont/Node3D/Lights"]
+[node name="OmniLight3D6" type="OmniLight3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4746001, 1.6313827, -11.462181)
 light_color = Color(0.9019608, 0.88235295, 0.7411765, 1)
 
-[node name="OmniLight3D7" type="OmniLight3D" parent="Pivot/sceneTransformCont/Node3D/Lights"]
+[node name="OmniLight3D7" type="OmniLight3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8141074, 1.6313827, -11.462181)
 light_color = Color(0.9019608, 0.88235295, 0.7411765, 1)
 
-[node name="OmniLight3D8" type="OmniLight3D" parent="Pivot/sceneTransformCont/Node3D/Lights"]
+[node name="OmniLight3D8" type="OmniLight3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.519786, 1.7181456, -11.462181)
 light_color = Color(0.9019608, 0.88235295, 0.7411765, 1)
 
-[node name="OmniLight3D9" type="OmniLight3D" parent="Pivot/sceneTransformCont/Node3D/Lights"]
+[node name="OmniLight3D9" type="OmniLight3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.519786, 0.7714447, -11.462181)
 light_color = Color(0.9019608, 0.88235295, 0.7411765, 1)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Pivot/sceneTransformCont/Node3D/Lights"]
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D/Lights"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.6640418, 5.7873654, -3.618503)
 light_color = Color(0.9019608, 0.88235295, 0.7411765, 1)
 light_energy = 4.0
@@ -242,7 +265,7 @@ shadow_enabled = true
 spot_range = 10.0
 spot_attenuation = 0.5
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Pivot/sceneTransformCont/Node3D/Lights"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D/Lights"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -0.45244366, 1.6589266, -11.458589)
 light_color = Color(0.9019608, 0.88235295, 0.7411765, 1)
 light_energy = 4.0
@@ -251,13 +274,13 @@ spot_range = 10.0
 spot_attenuation = 0.5
 spot_angle = 30.0
 
-[node name="Node3D2" type="Node3D" parent="Pivot/sceneTransformCont/Node3D"]
+[node name="Node3D2" type="Node3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.114979, 0, -12.975916)
 
-[node name="lamp" parent="Pivot/sceneTransformCont/Node3D/Node3D2" instance=ExtResource("4_ku5i6")]
+[node name="lamp" parent="SubViewport/Pivot/sceneTransformCont/Node3D/Node3D2" instance=ExtResource("4_ku5i6")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.0014266968, 0, -0.5636654)
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Pivot/sceneTransformCont/Node3D/Node3D2"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D/Node3D2"]
 transform = Transform3D(-4.371139e-08, 1, 4.3711385e-08, 0.12618166, -3.7846434e-08, 0.99200714, 0.99200714, 4.8877585e-08, -0.12618166, -0.008201599, 5.723682, -0.002401352)
 light_color = Color(0.9019608, 0.88235295, 0.7411765, 1)
 light_energy = 50.0
@@ -266,19 +289,19 @@ shadow_enabled = true
 spot_range = 15.0
 spot_attenuation = 1.5
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Pivot/sceneTransformCont/Node3D/Node3D2"]
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D/Node3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0057554245, 5.478762, -0.005862236)
 light_color = Color(0.9019608, 0.88235295, 0.7411765, 1)
 light_energy = 5.0
 omni_range = 2.0
 
-[node name="Node3D3" type="Node3D" parent="Pivot/sceneTransformCont/Node3D"]
+[node name="Node3D3" type="Node3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4600554, 0, -17.594398)
 
-[node name="lamp" parent="Pivot/sceneTransformCont/Node3D/Node3D3" instance=ExtResource("4_ku5i6")]
+[node name="lamp" parent="SubViewport/Pivot/sceneTransformCont/Node3D/Node3D3" instance=ExtResource("4_ku5i6")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.0014266968, 0, -0.5636654)
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Pivot/sceneTransformCont/Node3D/Node3D3"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D/Node3D3"]
 transform = Transform3D(-4.371139e-08, 1, 4.3711385e-08, 0.12618166, -3.7846434e-08, 0.99200714, 0.99200714, 4.8877585e-08, -0.12618166, -0.008201599, 5.723682, -0.002401352)
 light_color = Color(0.9019608, 0.88235295, 0.7411765, 1)
 light_energy = 50.0
@@ -288,78 +311,73 @@ shadow_enabled = true
 spot_range = 15.0
 spot_attenuation = 1.5
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Pivot/sceneTransformCont/Node3D/Node3D3"]
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D/Node3D3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0057554245, 5.478762, -0.005862236)
 light_color = Color(0.9019608, 0.88235295, 0.7411765, 1)
 light_energy = 5.0
 light_volumetric_fog_energy = 0.0
 omni_range = 2.0
 
-[node name="triggers" type="Node3D" parent="Pivot/sceneTransformCont"]
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport/Pivot/sceneTransformCont/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.716464, -30.263422)
+light_color = Color(0.8485019, 0.7429727, 0.47200024, 1)
+omni_range = 20.0
+
+[node name="triggers" type="Node3D" parent="SubViewport/Pivot/sceneTransformCont"]
 script = ExtResource("7_0b51g")
 
-[node name="door" type="Node3D" parent="Pivot/sceneTransformCont/triggers"]
+[node name="door" type="Node3D" parent="SubViewport/Pivot/sceneTransformCont/triggers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5029893, 0.5090981, 11.113949)
 
-[node name="Actionable" parent="Pivot/sceneTransformCont/triggers/door" instance=ExtResource("7_nnj4j")]
+[node name="Actionable" parent="SubViewport/Pivot/sceneTransformCont/triggers/door" instance=ExtResource("7_nnj4j")]
 dialogueResource = ExtResource("9_t0m8u")
 dialogueStart = "go_inside"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/sceneTransformCont/triggers/door/Actionable"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Pivot/sceneTransformCont/triggers/door/Actionable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.23438454)
 shape = SubResource("BoxShape3D_0b51g")
 
-[node name="icebox" type="Node3D" parent="Pivot/sceneTransformCont/triggers"]
+[node name="icebox" type="Node3D" parent="SubViewport/Pivot/sceneTransformCont/triggers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1117978, 0, 11.094773)
 
-[node name="Actionable" parent="Pivot/sceneTransformCont/triggers/icebox" instance=ExtResource("7_nnj4j")]
+[node name="Actionable" parent="SubViewport/Pivot/sceneTransformCont/triggers/icebox" instance=ExtResource("7_nnj4j")]
 dialogueResource = ExtResource("10_mvw1c")
 dialogueStart = "icebox"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/sceneTransformCont/triggers/icebox/Actionable"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Pivot/sceneTransformCont/triggers/icebox/Actionable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.052868605, 0.43056872, -0.22618484)
 shape = SubResource("BoxShape3D_t0m8u")
 
-[node name="keys" type="Node3D" parent="Pivot/sceneTransformCont/triggers"]
+[node name="keys" type="Node3D" parent="SubViewport/Pivot/sceneTransformCont/triggers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.576875, 0, 15.642254)
 
-[node name="Actionable" parent="Pivot/sceneTransformCont/triggers/keys" instance=ExtResource("7_nnj4j")]
+[node name="Actionable" parent="SubViewport/Pivot/sceneTransformCont/triggers/keys" instance=ExtResource("7_nnj4j")]
 dialogueResource = ExtResource("9_t0m8u")
 dialogueStart = "pick_up_key"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/sceneTransformCont/triggers/keys/Actionable"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Pivot/sceneTransformCont/triggers/keys/Actionable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31411016, 0)
 shape = SubResource("BoxShape3D_dmp5w")
 
-[node name="keyRing2" parent="Pivot" instance=ExtResource("12_cobvr")]
+[node name="keyRing2" parent="SubViewport/Pivot" instance=ExtResource("12_cobvr")]
 transform = Transform3D(-8.742278e-08, -2, 0, 2, -8.742278e-08, 0, 0, 0, 2, 5.6071844, 0.036550574, -15.628457)
 
-[node name="keyRing" parent="Pivot/keyRing2" index="0"]
+[node name="keyRing" parent="SubViewport/Pivot/keyRing2" index="0"]
 mesh = SubResource("ArrayMesh_alkrm")
 surface_material_override/0 = SubResource("StandardMaterial3D_3fus5")
 
-[node name="outside" parent="Pivot" instance=ExtResource("12_dmp5w")]
+[node name="outside" parent="SubViewport/Pivot" instance=ExtResource("12_dmp5w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2115602, -0.022144318, -3.6244707)
 
-[node name="mainPavement" parent="Pivot/outside" index="2"]
+[node name="mainPavement" parent="SubViewport/Pivot/outside" index="2"]
 layers = 3
 
-[node name="Decal" type="Decal" parent="Pivot/outside/mainPavement" index="1"]
+[node name="Decal" type="Decal" parent="SubViewport/Pivot/outside/mainPavement" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.945468, 0, -9.662281)
 texture_albedo = ExtResource("13_tdf6h")
 cull_mask = 1048574
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
-scale = Vector2(1.8867188, 2.1367188)
-sprite_frames = SubResource("SpriteFrames_3fus5")
-animation = &"cutscene"
-centered = false
-
-[node name="PauseMenu" parent="." instance=ExtResource("15_xf062")]
-layout_mode = 1
-
-[editable path="playerCamera/Player"]
-[editable path="playerCamera/Player/Pivot/sodaZachary"]
-[editable path="Pivot/keyRing2"]
-[editable path="Pivot/outside"]
+[editable path="SubViewport/playerCamera/Player"]
+[editable path="SubViewport/playerCamera/Player/Pivot/sodaZachary"]
+[editable path="SubViewport/Pivot/keyRing2"]
+[editable path="SubViewport/Pivot/outside"]
