@@ -6,7 +6,7 @@ extends Area3D
 #specifies which title we are starting from
 @export var dialogueStart: String = "start"
 
-@export var textbox_type: String = "env"
+@export var textbox_type: String = "portrait"
 
 
 #shows the balloon when this actionable gets actioned

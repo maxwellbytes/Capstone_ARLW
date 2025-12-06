@@ -3,10 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhiitnxjw0b2j"
-path.s3tc="res://.godot/imported/outside_txt_gasStation.png-e20f087b3995815908873ed40285c1b5.s3tc.ctex"
+path="res://.godot/imported/outside_txt_gasStation.png-e20f087b3995815908873ed40285c1b5.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "b2351dc952e94b101fe6f25d6d2ecf3c"
@@ -15,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://levels/outside_txt_gasStation.png"
-dest_files=["res://.godot/imported/outside_txt_gasStation.png-e20f087b3995815908873ed40285c1b5.s3tc.ctex"]
+dest_files=["res://.godot/imported/outside_txt_gasStation.png-e20f087b3995815908873ed40285c1b5.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

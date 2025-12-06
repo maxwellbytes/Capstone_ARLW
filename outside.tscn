@@ -1,7 +1,7 @@
-[gd_scene load_steps=30 format=4 uid="uid://bvgg1hp6myi7g"]
+[gd_scene load_steps=29 format=4 uid="uid://bvgg1hp6myi7g"]
 
 [ext_resource type="Script" uid="uid://coyo6w1g7mube" path="res://scripts/cameraOutside.gd" id="1_skvht"]
-[ext_resource type="Script" uid="uid://mjwo5avoahuo" path="res://outside.gd" id="1_xf062"]
+[ext_resource type="Script" uid="uid://mjwo5avoahuo" path="res://scripts/outside.gd" id="1_xf062"]
 [ext_resource type="PackedScene" uid="uid://cx8r0s0ubpy5l" path="res://player/player_3d.tscn" id="2_n6vtj"]
 [ext_resource type="PackedScene" uid="uid://33nbi5605lqp" path="res://models/lamp.glb" id="4_ku5i6"]
 [ext_resource type="Script" uid="uid://butb2kab0k2rv" path="res://scripts/triggers_outdoors.gd" id="7_0b51g"]
@@ -10,7 +10,6 @@
 [ext_resource type="Resource" uid="uid://b1eju35vbl401" path="res://dialogue/interactions.dialogue" id="10_mvw1c"]
 [ext_resource type="PackedScene" uid="uid://drt6xacjk8ip8" path="res://models/keyRing.glb" id="12_cobvr"]
 [ext_resource type="PackedScene" uid="uid://brou6x1sn037w" path="res://models/outside_model_newer.tscn" id="12_dmp5w"]
-[ext_resource type="Texture2D" uid="uid://cqcp55yk3ke13" path="res://sprites/dcl_leaf_pile.png" id="13_tdf6h"]
 [ext_resource type="Texture2D" uid="uid://cmi7kfct2itho" path="res://models/keyRing_txt_key.png" id="13_xf062"]
 [ext_resource type="Texture2D" uid="uid://dheiqhvpgutby" path="res://sprites/spr_temp_cutscene-Sheet.png" id="14_cobvr"]
 [ext_resource type="Texture2D" uid="uid://oavyqudad7js" path="res://models/keyRing_txt_keyring.png" id="14_crsda"]
@@ -369,13 +368,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_3fus5")
 [node name="outside" parent="SubViewport/Pivot" instance=ExtResource("12_dmp5w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2115602, -0.022144318, -3.6244707)
 
+[node name="gasPump" parent="SubViewport/Pivot/outside" index="0"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
 [node name="mainPavement" parent="SubViewport/Pivot/outside" index="2"]
 layers = 3
-
-[node name="Decal" type="Decal" parent="SubViewport/Pivot/outside/mainPavement" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.945468, 0, -9.662281)
-texture_albedo = ExtResource("13_tdf6h")
-cull_mask = 1048574
 
 [editable path="SubViewport/playerCamera/Player"]
 [editable path="SubViewport/playerCamera/Player/Pivot/sodaZachary"]

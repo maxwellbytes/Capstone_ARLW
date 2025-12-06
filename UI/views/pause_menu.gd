@@ -54,6 +54,7 @@ func on_view_change(view_name: String):
 	# if i have time i should move the show/hide to a helper method
 	match view_name:
 		"HOME":
+			GameManager.in_app = false
 			file_view.hide()
 			file_view.process_mode = Node.PROCESS_MODE_DISABLED
 			save_view.hide()
@@ -62,6 +63,7 @@ func on_view_change(view_name: String):
 			home_view.show()
 			home_view.process_mode = Node.PROCESS_MODE_ALWAYS
 		"FILES":
+			GameManager.in_app = false
 			home_view.hide()
 			home_view.process_mode = Node.PROCESS_MODE_DISABLED
 			save_view.hide()
@@ -71,13 +73,15 @@ func on_view_change(view_name: String):
 			file_view.process_mode = Node.PROCESS_MODE_ALWAYS
 			now_visible.emit()
 		"SAVE":
+			GameManager.in_app = false
 			home_view.hide()
 			file_view.hide()
 			home_view.process_mode = Node.PROCESS_MODE_DISABLED
 			file_view.process_mode = Node.PROCESS_MODE_DISABLED
 			save_view.show()
 			save_view.process_mode = Node.PROCESS_MODE_ALWAYS
-			
+		_:
+			GameManager.in_app = true
 
 	#if view_name == "":
 		#hide()

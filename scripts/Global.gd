@@ -9,6 +9,7 @@ extends Node
 @export var hasFood = false
 @export var hasDrink = false
 var has_key = false
+var door_open = false
 
 signal got_key
 

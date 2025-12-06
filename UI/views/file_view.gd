@@ -14,7 +14,7 @@ var curr_item = ''
 var slot_amount = 1
 #var curr_item: Item
 
-enum Slots {START = 0, SECOND = 1, THIRD = 2, END = 3}
+enum Slots {START = 0, SECOND = 1, END = 2}
 
 #connected to change_view() method in pause_menu.gd
 signal file_exit(icon_name: String)
@@ -59,7 +59,7 @@ func open():
 	else:
 		inv.texture.region = regions['empty']
 		#back button highlighted
-		curr_slot = 3
+		curr_slot = 2
 	
 	update_display()
 	

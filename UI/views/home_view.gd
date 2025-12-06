@@ -71,17 +71,21 @@ func set_icon(new_icon: View):
 
 # does _input check every frame?? is this method called when it has been hidden and the player is moving?
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_accept") and GameManager.curr_view == "HOME":
-		icon_selected.emit(curr_icon.name)
-		#print('input getting tripped')
-	if Input.is_action_just_pressed("move_right") and GameManager.curr_view == "HOME":
-		next_icon("RIGHT")
-	if Input.is_action_just_pressed("move_left") and GameManager.curr_view == "HOME":
-		next_icon("LEFT")
-	if Input.is_action_just_pressed("move_forward") and GameManager.curr_view == "HOME":
-		next_icon("UP")
-	if Input.is_action_just_pressed("move_back") and GameManager.curr_view == "HOME":
-		next_icon("DOWN")
+	if GameManager.in_app and GameManager.is_paused:
+		if Input.is_action_just_pressed("ui_accept"):
+			icon_selected.emit("HOME")
+	else:
+		if Input.is_action_just_pressed("ui_accept") and GameManager.curr_view == "HOME":
+			icon_selected.emit(curr_icon.name)
+			#print('input getting tripped')
+		if Input.is_action_just_pressed("move_right") and GameManager.curr_view == "HOME":
+			next_icon("RIGHT")
+		if Input.is_action_just_pressed("move_left") and GameManager.curr_view == "HOME":
+			next_icon("LEFT")
+		if Input.is_action_just_pressed("move_forward") and GameManager.curr_view == "HOME":
+			next_icon("UP")
+		if Input.is_action_just_pressed("move_back") and GameManager.curr_view == "HOME":
+			next_icon("DOWN")
 
 #should probably remove the match and replace it with an array and an access index
 func next_icon(direction: String):

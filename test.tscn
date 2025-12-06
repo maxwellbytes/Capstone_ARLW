@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=4 uid="uid://uj2mkp1cr87t"]
 
+[ext_resource type="Script" uid="uid://dl6ke1kt8n6m0" path="res://scripts/inside.gd" id="1_b0q6j"]
 [ext_resource type="PackedScene" uid="uid://cx8r0s0ubpy5l" path="res://player/player_3d.tscn" id="2_6uqi0"]
-[ext_resource type="Script" uid="uid://tx7267k14eer" path="res://node_3d.gd" id="2_ykrsh"]
 [ext_resource type="Material" uid="uid://fv4kkijdo74a" path="res://test_base_standard_material.tres" id="5_5tkv4"]
 [ext_resource type="PackedScene" uid="uid://147jk8btve6d" path="res://levels/gasStation1.glb" id="5_g14j6"]
 [ext_resource type="Script" uid="uid://ksxcrgiceexy" path="res://camera_bounds.gd" id="5_ykrsh"]
@@ -171,6 +171,7 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 stretch_shrink = 4
+script = ExtResource("1_b0q6j")
 
 [node name="PauseMenu" parent="." instance=ExtResource("13_0m0f1")]
 layout_mode = 2
@@ -452,15 +453,16 @@ bones/408/rotation = Quaternion(-0.70710677, 0, 0, 0.70710677)
 transform = Transform3D(-0.59711534, -0.7942403, -0.11240998, 0.7398107, -0.599438, 0.30553952, -0.31005463, 0.09928011, 0.94552106, -0.464187, 0.987913, -0.01840704)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport" node_paths=PackedStringArray("player")]
-transform = Transform3D(1, 0, 0, 0, 0.82083035, 0.5711721, 0, -0.5711721, 0.82083035, -9.348358, 6.202764, 12.19331)
+transform = Transform3D(1, 0, 0, 0, 0.82083035, 0.5711721, 0, -0.5711721, 0.82083035, -9.348358, 7.1479483, 14.952809)
 fov = 32.0
 size = 6.0
 near = 0.01
 script = ExtResource("6_g14j6")
 player = NodePath("../Player")
 min_x = -10.0
-max_x = 6
-min_z = 6
+max_x = 10
+min_z = -5
+max_z = 14
 
 [node name="Pivot" type="Node3D" parent="SubViewport"]
 transform = Transform3D(0.93728197, 0, -0.34857205, 0, 1, 0, 0.34857205, 0, 0.93728197, 0, 0, 0)
@@ -524,10 +526,6 @@ spot_range = 8.0
 [node name="cameraBounds" type="Node3D" parent="SubViewport/Pivot/Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 2.75, 4.25)
 script = ExtResource("5_ykrsh")
-
-[node name="Node3D" type="Node3D" parent="SubViewport/Pivot/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4282036, 0, 8.952063)
-script = ExtResource("2_ykrsh")
 
 [node name="gasStation1" parent="SubViewport/Pivot/Node3D" instance=ExtResource("5_g14j6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.25, 3.75)

@@ -2,7 +2,7 @@ extends Node
 
 var is_paused: bool = false
 @export var curr_view: String = "CLOSED"
-
+var in_app = false
 
 
 #signal paused_toggled(is_paused: bool)
